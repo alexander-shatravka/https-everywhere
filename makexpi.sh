@@ -25,7 +25,7 @@ APP_NAME=https-everywhere
 
 cd "$(dirname $0)"
 
-if ./trivial-validate src/chrome/content/rules >&2
+if ./validate.py src/chrome/content/rules >&2
 then
   echo Validation of included rulesets completed. >&2
   echo >&2
