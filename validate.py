@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+# encoding: UTF-8
 # ♥ 2011 katmagic
 # This is free and unencumbered software released into the public domain. See
 # http://unlicense.org/ for more information. ~katmagic
@@ -38,7 +39,7 @@ def validate_rule(rule_file):
 
 		if 'to' in rule.attrib:
 			try:
-				bytes(rule.attrib['to'], 'ASCII')
+				rule.attrib['to'].encode('ASCII')
 			except UnicodeEncodeError:
 				raise AssertionError("non-ASCII character in to rule")
 
