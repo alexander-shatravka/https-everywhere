@@ -47,13 +47,11 @@ def validate_rule(rule_file):
 			assert not(rule.attrib['to'].startswith('http:')), "redirects to http"
 
 	targets = root.findall('target')
-	assert root.findall('target'), "no target target rule"
+	assert targets, "no target rule"
 	for rule in targets:
 		if 'host' in rule.attrib:
 			assert not(MULTIPLE_WILDCARDS_RE.search(rule.attrib['host'])), \
 				"multiple wildcards in target host"
-
-	return (root.attrib['name'], set(t.attrib['host'] for t in targets))
 
 if __name__ == '__main__':
 	import os, os.path
@@ -69,7 +67,7 @@ if __name__ == '__main__':
 		for f in (os.path.join(path, f) for f in files):
 			if f.endswith('.xml'):
 				try:
-					name, hosts_ = validate_rule(f)
+					validate_rule(f)
 				except AssertionError as e:
 					err("error in file '%s': %s" % (f, e.args[0]))
 
