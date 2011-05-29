@@ -53,7 +53,7 @@ def validate_rule(rule_file):
 			assert not(MULTIPLE_WILDCARDS_RE.search(rule.attrib['host'])), \
 				"multiple wildcards in target host"
 
-	return (root.attrib['name'], {t.attrib['host'] for t in targets})
+	return (root.attrib['name'], set(t.attrib['host'] for t in targets))
 
 if __name__ == '__main__':
 	import os, os.path
