@@ -60,6 +60,8 @@ if __name__ == '__main__':
 	failure = False
 	def err(error):
 		print(error, file=sys.stderr)
+
+		global failure
 		failure = True
 
 	names, hosts = set(), set()
